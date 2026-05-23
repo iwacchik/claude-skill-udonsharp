@@ -20,6 +20,7 @@ UdonSharp は C# を Udon Assembly に変換する言語。標準 C# と異な�
 
 - `references/performance.md` — Udon は C# の 200-1000 倍遅い、最適化方針
 - `references/editor-scripting.md` — `#if UNITY_EDITOR` / `COMPILER_UDONSHARP`、Proxy、`AddUdonSharpComponent`
+- `references/create-script.md` — `.cs` + `.asset` セットの新規作成手順、`execute_code` スニペット（`snippets/`）
 - `references/event-execution-order.md` — イベント発火順序
 - `references/networking.md` — ネットワークの 3 柱、帯域制限、複数 UB 同居ルール
 - `references/sync-variables.md` — `[UdonSynced]`、同期可能型、シリアライズイベント、late joiner
