@@ -175,6 +175,46 @@ VRChat は以下 3 コンポーネントを Udon に公開：
 - カスタムフォントは**アトラス解像度を下げ・使わない文字を除外**すると DL/RAM 軽量化
 - フォールバックフォントアセットを外すと、VRChat 内蔵フォールバックで Unicode 欠落をカバー（Editor では box 表示になる）
 
+### TMP_Text の主要プロパティ（Udon 公開）
+
+`text` / `color` / `alpha` / `fontSize` / `enableAutoSizing`（+ `fontSizeMin` / `fontSizeMax`）、
+配置（`alignment` / `horizontalAlignment` / `verticalAlignment`）、
+間隔（`characterSpacing` / `wordSpacing` / `lineSpacing` / `paragraphSpacing`）、
+折り返し・表示（`enableWordWrapping` / `overflowMode` / `richText` / `parseCtrlCharacters` / `isRightToLeftText`）、
+表示制限（`firstVisibleCharacter` / `maxVisibleCharacters` / `maxVisibleWords` / `maxVisibleLines`）、
+`fontMaterial`（取得時にマテリアルをクローン）/ `fontSharedMaterial`（共有）
+
+### TMP_InputField
+
+| メンバー | 内容 |
+|---------|------|
+| `text` | 入力値の取得・設定 |
+| `isFocused` | フォーカス状態（読み取り専用） |
+| `readOnly` / `richText` | 読み取り専用化 / リッチテキスト許可 |
+| `SetTextWithoutNotify(string)` | `onValueChanged` を発火させずに値変更 |
+
+Unity 標準の `UI.InputField` でなくこちらを使う。
+
+### TMP_Dropdown
+
+| メンバー | 内容 |
+|---------|------|
+| `value` | 選択中インデックスの取得・設定 |
+| `IsExpanded` | 展開中か |
+| `SetValueWithoutNotify(int)` | イベント発火なしで値変更 |
+| `RefreshShownValue()` | 表示中のテキスト・画像を更新 |
+| `ClearOptions()` / `Show()` / `Hide()` | 選択肢クリア / 表示 / 非表示 |
+
+選択肢の動的追加は VRChat SDK 拡張の `VRCTMPDropdownExtension` で行う：
+
+```csharp
+dropdown.AddOptions(new string[] { "A", "B" });   // string[] / Sprite[] / OptionData[] 対応
+dropdown.AddOptions(new TMP_Dropdown.OptionData[]
+{
+    new TMP_Dropdown.OptionData("テキスト", sprite)
+});
+```
+
 ## `VRC_AvatarPedestal`
 
 アバターを展示してインタラクトで切替させるコンポーネント。

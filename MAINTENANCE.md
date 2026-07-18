@@ -40,6 +40,19 @@ vrc-udonsharp スキルを VRChat / UdonSharp 公式ドキュメントの更新�
 
 対象サイト：`creators.vrchat.com/worlds` と `udonsharp.docs.vrchat.com` の両方。
 
+**推奨：sitemap.xml で機械的に列挙する**（2026-07-18 Batch 17 で確立）：
+
+```bash
+curl -sL -A 'vrc-udonsharp-skill-updater/1.0 (contact: <メールアドレス>)' \
+  https://creators.vrchat.com/sitemap.xml -o sitemap.xml
+```
+
+- 全ページ URL が漏れなく取れるため、WebFetch のナビゲーション要約（不完全になりがち）より確実
+- **User-Agent 必須**：UA なしは Cloudflare WAF が 403（waf_code 13799）で弾く。アプリ名 + 連絡先を含めること
+- 取得した URL 一覧を SOURCES.md と `comm` 等で突合して未登録ページを抽出する
+- なお udonsharp.docs.vrchat.com は udonsharp.dev へリダイレクトされるようになった。UdonSharp ドキュメントは creators.vrchat.com の `/worlds/udon/udonsharp/` にも移設済み
+
+
 ### Step 3：WebFetch で取得
 
 対象 URL を `WebFetch` で取得。プロンプトは**フェッチしたい具体的な情報**を列挙すると精度が上がる（過去ログに良い例多数）。

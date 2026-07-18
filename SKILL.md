@@ -37,6 +37,8 @@ UdonSharp は C# を Udon Assembly に変換する言語。標準 C# と異な�
 - `references/debugging.md` — ログファイル、オーバーレイ、起動フラグ、例外ウォッチャー
 - `references/build-automation.md` — Build & Test / Reload / Publish（Publish は要ユーザー確認）
 - `references/components.md` — VRCSceneDescriptor / VRCObjectSync / VRC_Pickup / VRC_Station / VRC_SpatialAudioSource / TextMeshPro 等の VRC シーンコンポーネント
+- `references/dynamics.md` — PhysBones / Contacts / VRC Constraints のワールド利用と Udon 操作（SDK 3.10.0+、`ApplyConfigurationChanges` 必須）
+- `references/vrctween.md` — VRCTween トゥイーンシステム（SDK 3.10.4+）：移動・フェード・DelayedCall・Virtual Tweens
 - `references/world-basics.md` — ワールド作成手順、Community Labs、Unity Layers、SDK Prefabs、Items、Allowlisted Components
 - `references/vrc-graphics.md` — VRCGraphics / VRCShader / VRCAsyncGPUReadback / VRCCameraSettings / VRCQualitySettings / Shader Globals
 - `references/video-players.md` — AVPro vs Unity VideoPlayer、Allowlist、ライブ配信

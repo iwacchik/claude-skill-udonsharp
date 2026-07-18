@@ -2,6 +2,8 @@
 
 UdonSharp のエディタ設定・バージョン履歴・コミュニティリソース。
 
+公式ドキュメントは creators.vrchat.com へ移設が進んでいる（`/worlds/udon/udonsharp/` 配下に Attributes / Class Exposure Tree / Configuration / Editor Scripting / Performance Tips）。旧 udonsharp.docs.vrchat.com は udonsharp.dev にリダイレクトされる。内容は本スキルの rules / references に反映済み。
+
 ## Project Settings
 
 `Edit > Project Settings > Udon Sharp` で設定する。
@@ -25,6 +27,14 @@ UdonSharp のエディタ設定・バージョン履歴・コミュニティリ�
 | **Debug build** | `Inline Code` と `Listen for client exceptions` をまとめて ON/OFF |
 | **Inline Code** | 生成アセンブリに C# ソースコードを含める（デバッグ可視性向上） |
 | **Listen for client exceptions** | VRChat クライアントのログをプロジェクトに照合（**本番クライアントのエラー追跡**に有効） |
+
+## Class Exposure Tree（公開 API 確認ツール）
+
+どの Unity / C# クラス・メソッドが Udon に公開されているかを Editor 内で確認できる。
+
+- メニュー：`VRChat SDK > Udon Sharp > Class Exposure Tree`
+- 赤 = 未公開、緑 = 公開済み
+- **Show base members** トグルで基底クラス由来の公開メンバー（例：`Component` 由来の `GetComponent<T>()`）も表示される
 
 ## Migration（v0.x → v1.0）
 

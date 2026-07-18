@@ -21,11 +21,14 @@ VRChat Worlds 公式ドキュメントを網羅して vrc-udonsharp スキルに
 - [x] https://creators.vrchat.com/worlds/layers
 - [x] https://creators.vrchat.com/worlds/sdk-prefabs
 - [x] https://creators.vrchat.com/worlds/supported-assets
-- [x] https://creators.vrchat.com/worlds/whitelisted-world-components
+- [x] https://creators.vrchat.com/worlds/whitelisted-world-components (fetched: 2026-07-18, Dynamics 追加確認)
 
 ## /worlds/components/ — Scene Components（12）
 
 - [x] https://creators.vrchat.com/worlds/components/textmeshpro
+- [x] https://creators.vrchat.com/worlds/components/textmeshpro/tmp_text (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/worlds/components/textmeshpro/tmp_inputfield (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/worlds/components/textmeshpro/tmp_dropdown (fetched: 2026-07-18)
 - [x] https://creators.vrchat.com/worlds/components/vrc_avatarpedestal
 - [x] https://creators.vrchat.com/worlds/components/vrc_cameradolly
 - [x] https://creators.vrchat.com/worlds/components/vrc_mirrorreflection
@@ -55,12 +58,33 @@ VRChat Worlds 公式ドキュメントを網羅して vrc-udonsharp スキルに
 - [x] https://creators.vrchat.com/worlds/udon/using-build-test
 - [x] https://creators.vrchat.com/worlds/udon/world-debug-views
 - [-] https://creators.vrchat.com/worlds/udon/graph/ — Udon Node Graph（UdonSharp 対象外）
+- [-] https://creators.vrchat.com/worlds/udon/graph/** （サブページ 5） — 同上
 - [-] https://creators.vrchat.com/worlds/udon/vm-and-assembly/ — VM 内部仕様（通常コードで使わない）
+
+## /worlds/udon/vrctween/ — VRCTween（4、SDK 3.10.4 で追加）
+
+- [x] https://creators.vrchat.com/worlds/udon/vrctween/ (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/worlds/udon/vrctween/tween-types (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/worlds/udon/vrctween/virtual-tweens (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/worlds/udon/vrctween/settings (fetched: 2026-07-18)
+
+## /worlds/udon/udonsharp/ — UdonSharp 移設セクション（6）
+
+旧 udonsharp.docs.vrchat.com からの移設。内容は既存 rules / references とほぼ同一。差分（Class Exposure Tree）は udonsharp-meta.md に追記済み。
+
+- [x] https://creators.vrchat.com/worlds/udon/udonsharp/ (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/worlds/udon/udonsharp/attributes (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/worlds/udon/udonsharp/class-exposure-tree (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/worlds/udon/udonsharp/configuration (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/worlds/udon/udonsharp/editorscripting (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/worlds/udon/udonsharp/performance-tips (fetched: 2026-07-18)
 
 ## /worlds/udon/players/ — Player API（8）
 
-- [x] https://creators.vrchat.com/worlds/udon/players/
+- [x] https://creators.vrchat.com/worlds/udon/players/ (fetched: 2026-07-18, isVRCPlus 追加)
 - [x] https://creators.vrchat.com/worlds/udon/players/drones/
+- [x] https://creators.vrchat.com/worlds/udon/players/drones/getting-drones (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/worlds/udon/players/drones/drone-information (fetched: 2026-07-18)
 - [x] https://creators.vrchat.com/worlds/udon/players/getting-players
 - [x] https://creators.vrchat.com/worlds/udon/players/player-audio
 - [x] https://creators.vrchat.com/worlds/udon/players/player-avatar-scaling
@@ -72,8 +96,8 @@ VRChat Worlds 公式ドキュメントを網羅して vrc-udonsharp スキルに
 
 - [x] https://creators.vrchat.com/worlds/udon/data-containers/
 - [x] https://creators.vrchat.com/worlds/udon/data-containers/byte-and-bit-operations
-- [x] https://creators.vrchat.com/worlds/udon/data-containers/data-dictionaries
-- [x] https://creators.vrchat.com/worlds/udon/data-containers/data-lists
+- [x] https://creators.vrchat.com/worlds/udon/data-containers/data-dictionaries (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/worlds/udon/data-containers/data-lists (fetched: 2026-07-18)
 - [x] https://creators.vrchat.com/worlds/udon/data-containers/data-tokens
 - [x] https://creators.vrchat.com/worlds/udon/data-containers/vrcjson
 
@@ -119,9 +143,10 @@ VRChat Worlds 公式ドキュメントを網羅して vrc-udonsharp スキルに
 
 ## /worlds/clientsim/ — ClientSim（3）
 
-- [ ] https://creators.vrchat.com/worlds/clientsim/
-- [ ] https://creators.vrchat.com/worlds/clientsim/playerObject-editor
-- [ ] https://creators.vrchat.com/worlds/clientsim/playerdata-editor-window
+- [x] https://creators.vrchat.com/worlds/clientsim/ — Batch 12 で注入済み（チェック更新漏れを修正）
+- [x] https://creators.vrchat.com/worlds/clientsim/playerObject-editor — Batch 13 で注入済み
+- [x] https://creators.vrchat.com/worlds/clientsim/playerdata-editor-window — Batch 13 で注入済み
+- [-] https://creators.vrchat.com/worlds/clientsim/systems/** （26 ページ） — ClientSim 内部実装ドキュメント（ワールド開発に不要）
 
 ## /worlds/examples/ — Examples 直下（12）
 
@@ -163,7 +188,30 @@ VRChat Worlds 公式ドキュメントを網羅して vrc-udonsharp スキルに
 - [x] https://creators.vrchat.com/worlds/examples/udon-example-scene/udon-video-sync-player
 - [x] https://creators.vrchat.com/worlds/examples/udon-example-scene/world-audio-settings
 
+## common-components — VRC Dynamics（アバター/ワールド共通、SDK 3.10.0 でワールド開放）
+
+`references/dynamics.md` に注入。
+
+- [x] https://creators.vrchat.com/common-components/ (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/common-components/physbones (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/common-components/contacts/ (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/common-components/contacts/built-in-contact-tags (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/common-components/constraints/ (fetched: 2026-07-18)
+- [x] https://creators.vrchat.com/common-components/constraints/constraints-api (fetched: 2026-07-18)
+- [ ] https://creators.vrchat.com/common-components/constraints/vrc-aim-constraint — 低優先（個別コンポーネント解説）
+- [ ] https://creators.vrchat.com/common-components/constraints/vrc-look-at-constraint — 低優先
+- [ ] https://creators.vrchat.com/common-components/constraints/vrc-parent-constraint — 低優先
+- [ ] https://creators.vrchat.com/common-components/constraints/vrc-position-constraint — 低優先
+- [ ] https://creators.vrchat.com/common-components/constraints/vrc-rotation-constraint — 低優先
+- [ ] https://creators.vrchat.com/common-components/constraints/vrc-scale-constraint — 低優先
+
+## インデックスページ（対象外）
+
+- [-] /worlds、/worlds/components、/worlds/examples、/worlds/examples/obstacle-course、/worlds/examples/persistence、/worlds/examples/udon-example-scene — カテゴリインデックスのみで固有コンテンツなし
+
 ## udonsharp.docs.vrchat.com（UdonSharp 公式ドキュメント）
+
+※ 2026-07 時点で udonsharp.dev にリダイレクトされる。後継は上記 /worlds/udon/udonsharp/ セクション。
 
 - [x] https://udonsharp.docs.vrchat.com/
 - [x] https://udonsharp.docs.vrchat.com/setup
@@ -183,14 +231,11 @@ VRChat Worlds 公式ドキュメントを網羅して vrc-udonsharp スキルに
 
 ## 集計
 
-- 未処理：約 110 ページ
-- 取得失敗（要手動）：1 ページ（network-id-utility）
-- 対象外：2 ページ
+- 処理済み：約 134 ページ（2026-04-21 初回 113 + 2026-07-18 Batch 17 で 21 追加）
+- 未処理（低優先）：6 ページ（common-components の個別 Constraint 解説）
+- 対象外：Udon Graph 一式、ClientSim systems（26）、インデックスページ
 
-進捗：**完了（113 / 112）** 🎉
-
-**全ページ注入完了**。network-id-utility は手動 HTML から追加。本スキルは全域 coverage 達成。
-2026-04-21 再列挙で udonsharp.docs の `/vrchat-api` と `/events` が取りこぼしとして発見・追加注入。
+2026-04-21 に全域 coverage 達成。2026-07-18 に SDK 3.10.3 / 3.10.4 追随の再列挙・差分注入を実施（Batch 17）。
 
 ## 完了ログ
 - 2026-04-21 Batch 1：UdonSharp 言語仕様 / セットアップ / パフォーマンス Tips / Editor Scripting / Udon 概要 / Event Execution Order → v2 に `SKILL.md`、`rules/language.md`、`rules/basics.md`、`references/performance.md`、`references/editor-scripting.md`、`references/event-execution-order.md` 作成
@@ -209,3 +254,4 @@ VRChat Worlds 公式ドキュメントを網羅して vrc-udonsharp スキルに
 - 2026-04-21 Batch 14：UdonSharp docs 6（root / examples / community / config / migration / FAQ）→ `references/udonsharp-meta.md` 作成
 - 2026-04-21 Batch 15：Examples 直下 6（Udon intro / AI Nav / Controller Collide / Image Loading / MIDI Playback / Minimap）→ `references/examples-index.md` 作成
 - 2026-04-21 Batch 16（追補）：udonsharp.docs 再列挙で取りこぼし 2 ページ発見 — `/vrchat-api`（UdonSharp から呼べる VRChat API 網羅）と `/events`（UdonSharp override 可能イベント正規シグネチャ）→ `references/vrchat-api.md` 新規作成、`references/events.md` に PostLateUpdate / Video / MIDI / OnControllerColliderHitPlayer 追記
+- 2026-07-18 Batch 17：SDK 3.10.3 / 3.10.4 追随。sitemap.xml 再列挙で未登録 53 URL 検出。VRCTween 4 ページ → `references/vrctween.md` 新規、common-components 6 ページ → `references/dynamics.md` 新規（PhysBones / Contacts / Constraints の Udon API）。DataList / DataDictionary 容量 API・isVRCPlus・VRCDroneApi 詳細・TMP サブページ 3・whitelist（Dynamics 系追加）を既存 references に反映。UdonSharp 移設セクション 6 ページを確認し Class Exposure Tree を `udonsharp-meta.md` に追記、SKILL.md に新規 references 2 件を追加。ClientSim systems（26）・Graph サブページ（5）・インデックスページは対象外登録。

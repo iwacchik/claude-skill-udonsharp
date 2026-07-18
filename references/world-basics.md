@@ -127,7 +127,9 @@ Animator, Rigidbody, Camera, Canvas, 各種 Collider, Joint, Renderer, ParticleS
 
 ### VRChat 独自
 
-`VRC_AvatarPedestal`, `VRCContactReceiver`, `VRCContactSender`, `VRC_MidiListener`, `VRC_MirrorReflection`, `VRCPhysBone`, VRCStation、各種 Portal / Audio 等。
+`VRC_AvatarPedestal`, `VRCContactReceiver`, `VRCContactSender`, `VRC_MidiListener`, `VRC_MirrorReflection`, `VRCPhysBone`, `VRCPhysBoneCollider`, VRC Constraints 各種, VRCStation、各種 Portal / Audio 等。
+
+PhysBones / Contacts / Constraints のワールド利用と Udon からの操作は `references/dynamics.md` 参照。
 
 ### サードパーティ対応
 

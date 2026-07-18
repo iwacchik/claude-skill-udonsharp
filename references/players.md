@@ -60,6 +60,7 @@ if (Utilities.IsValid(player))
 | `IsUserInVR()` | bool | VR デバイス使用中か |
 | `IsValid` | bool | 参照有効か（`Utilities.IsValid` 経由推奨） |
 | `isSuspended` | bool | デバイスサスペンド中か |
+| `isVRCPlus` | bool | アクティブな VRC+ サブスクリプション保有か（SDK 3.10.3+） |
 | `playerId` | int | キャッシュされた ID |
 
 ## プレイヤータグ（軽量 key-value）
@@ -237,8 +238,20 @@ VRChat+ のプレイヤードローンの情報取得と trigger 判定。
 ### アクセス
 
 ```csharp
-// プレイヤーのドローン情報取得（VRCDroneApi 経由）
+VRCDroneApi drone = player.GetDrone();     // プレイヤーのドローン API を取得
+VRCPlayerApi owner = drone.GetPlayer();    // ドローンの所有プレイヤー
 ```
+
+### VRCDroneApi
+
+| メンバー | 内容 |
+|---------|------|
+| `IsDeployed()` | 展開中か |
+| `GetPosition()` / `TryGetPosition(out Vector3)` | 位置 |
+| `GetRotation()` / `TryGetRotation(out Quaternion)` | 回転 |
+| `GetVelocity()` / `TryGetVelocity(out Vector3)` | 速度 |
+| `TeleportTo(Vector3, Quaternion, bool lerp)` | 移動（lerp=true でリモートのドローンを補間） |
+| `SetVelocity(Vector3)` | 速度設定 |
 
 ### Trigger イベント
 
@@ -247,10 +260,5 @@ public override void OnDroneTriggerEnter(VRCDroneApi drone) { }
 public override void OnDroneTriggerStay(VRCDroneApi drone) { }
 public override void OnDroneTriggerExit(VRCDroneApi drone) { }
 ```
-
-### 関連ページ
-
-- 取得方法：公式の `Getting Drones`
-- プロパティ：公式の `Drone Information`
 
 ドローンに干渉するインスタレーション系ワールドで使う。通常は不要。

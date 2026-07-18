@@ -63,6 +63,8 @@ private DataList _list = new DataList()
 {
     "Bananas", "Grapes", "Milk"
 };
+
+DataList list = new DataList(64);   // 初期容量指定（SDK 3.10.4+、再確保を減らす）
 ```
 
 **制約：初期化子は `private` / `[NonSerialized] public` フィールドでのみ。関数内では使えない。**
@@ -117,9 +119,11 @@ for (int i = 0; i < list.Count; i++)
 
 ```csharp
 private DataDictionary _dict = new DataDictionary();
+DataDictionary dict = new DataDictionary(64);   // 初期容量指定（SDK 3.10.4+）
 
 _dict.Add("key", 5);          // 既存キー → 例外（初期化の重複検出に有用）
 _dict.SetValue("key", 5);     // 上書き可（runtime 向け）
+_dict.EnsureCapacity(128);    // 容量を事前確保（SDK 3.10.4+）
 ```
 
 ### 取得
