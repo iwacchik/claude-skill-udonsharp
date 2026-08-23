@@ -19,6 +19,7 @@ UdonSharp は C# を Udon Assembly に変換する言語。標準 C# と異な�
 ## 必要に応じて参照するもの
 
 - `references/performance.md` — Udon は C# の 200-1000 倍遅い、最適化方針
+- `references/udon-assembly-optimization.md` — EXTERN 命令コストの実測知見（補間集約・公式メソッド優先・null 判定・検証手法）
 - `references/editor-scripting.md` — `#if UNITY_EDITOR` / `COMPILER_UDONSHARP`、Proxy、`AddUdonSharpComponent`
 - `references/create-script.md` — `.cs` + `.asset` セットの新規作成手順、`execute_code` スニペット（`snippets/`）
 - `references/event-execution-order.md` — イベント発火順序
@@ -54,6 +55,6 @@ UdonSharp は C# を Udon Assembly に変換する言語。標準 C# と異な�
 
 1. 言語制約・属性ルールを `rules/language.md` で確認
 2. クラス骨格・命名は `rules/basics.md`
-3. パフォーマンスが関わるコードは `references/performance.md`
+3. パフォーマンスが関わるコードは `references/performance.md` と `references/udon-assembly-optimization.md`
 4. カスタム Inspector / Gizmos は `references/editor-scripting.md`
 5. イベント順序が絡む場合は `references/event-execution-order.md`

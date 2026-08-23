@@ -169,3 +169,7 @@ WebFetch で取得不可な場合：
 
 処理：各 URL を WebFetch → 既存 references/*.md との diff → 更新 → SOURCES.md の fetched 日時更新。
 ```
+
+## doc 同期対象外ファイル
+
+- `references/udon-assembly-optimization.md` — 実測由来の独自知見（手動管理）。更新バッチでは上書き・再 fetch の対象にしないこと。
