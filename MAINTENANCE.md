@@ -24,6 +24,8 @@ vrc-udonsharp スキルを VRChat / UdonSharp 公式ドキュメントの更新�
 - **UdonSharp News**：https://udonsharp.docs.vrchat.com/news — リリース履歴
 - **VRChat 公式リリースノート**：https://docs.vrchat.com/release-notes
 - **VRChat SDK パッケージの CHANGELOG**（`Packages/com.vrchat.worlds/CHANGELOG.md`）
+  - ※ 実際のパッケージには CHANGELOG.md が含まれないことがある（3.10.5-beta.1 で確認）。その場合は下記の GitHub releases を使う
+- **ベータ版 SDK のリリースノート**：https://github.com/vrchat/packages/releases — beta タグ（例：`3.10.5-beta.1`）の本文に https://vrc-beta-docs.netlify.app/releases/release-X-Y-Z へのリンクがある。creators.vrchat.com/releases には beta は載らない。ベータ版ドキュメント全体も vrc-beta-docs.netlify.app で参照できる（例：/worlds/components/vrc_pickup）
 
 ### Step 2：更新対象ページの特定
 
@@ -108,6 +110,11 @@ fetched 日時を書いておくと、**古いものから再 fetch する運用
 - **要約ベースで取得される**ため、具体的な API シグネチャや数値を取りたい場合はプロンプトで明示指定
 - **SVG 図表はテキスト化されない**（Event Execution Order の公式図など）
 - **複数 DOM スラッグで同じページを指す**ケースあり（過去 network-id-utility で発生、最終的に手動 HTML 保存で解決）
+
+### API シグネチャは SDK DLL 実測で検証する（2026-08-24 Batch 18 で確立）
+
+docs の get/set 可否や casing は不正確なことがある（実例：VRCQualitySettings.RealtimeReflectionProbes / ShadowmaskMode を docs 要約は読み取り専用扱い → DLL 実測では get/set・`vSyncCount` 表記 → 実際は `VSyncCount`）。
+新 API を references に書く前に、`Packages/com.vrchat.worlds/Runtime/VRCSDK/Plugins/VRCSDK3.dll` や `com.vrchat.base/.../VRCSDKBase.dll` を PowerShell + System.Reflection.Metadata（PEReader）でメタデータ列挙して確認する。型が見つからない場合は基底クラス（例：VRCPickup → VRC_Pickup）も探す。
 
 ### 手動注入パターン
 
