@@ -67,6 +67,7 @@ objSync.Respawn();             // 初期位置・速度リセット
 | **Throw Velocity Boost** | 投げ速度スケール |
 | **Pickup Orientation** | Grip / Gun / Any |
 | **Interaction Text** | プロンプト表示 |
+| **Outline Renderers** | ホバー時にアウトラインを表示する `Renderer[]`（SDK 3.10.5+）。Mesh / SkinnedMesh Renderer のみ対応。未指定なら自動判定。U# からは `OutlineRenderers` フィールド |
 
 ### Grabbable 判定
 

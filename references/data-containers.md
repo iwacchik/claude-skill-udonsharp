@@ -43,6 +43,8 @@ if (token.TokenType == TokenType.String) { /* token.String */ }
 if (token.IsNumber) { /* token.Number */ }
 ```
 
+`int` を格納した token の `long` への変換は SDK 3.10.4 以前は失敗する（SDK 3.10.5 で修正）。
+
 ### `String` プロパティと `ToString()` の違い
 
 - `.String` — 型が String の場合のみ正しく値を返す
@@ -189,6 +191,7 @@ if (VRCJson.TryDeserializeFromJson(json, out DataToken result))
 - **NaN / Infinity 不可**
 - ルート要素は必ず Dictionary または List
 - **数値は全て double としてデシリアライズされる**（元の型情報は失われる）
+- SDK 3.10.5 でデシリアライズの堅牢性が改善（`[}` のような不正な閉じ括弧を invalid 扱い・`["["]` のような文字列内の括弧を正しく解析）。3.10.4 以前は不正な JSON の一部を受理することがある。
 
 ## ネットワーク同期（DataList / Dictionary は直接同期不可）
 

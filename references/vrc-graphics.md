@@ -89,7 +89,9 @@ Unity Quality 設定への**読み取りアクセス**＋一部書き込み。
 
 ### 取得できる項目
 
-`AntiAliasing`, `PixelLightCount`, `LODBias`, `MaximumLODLevel`, `ShadowResolution`, `ShadowDistance`, `ShadowCascades`, `vSyncCount`
+`AntiAliasing`, `PixelLightCount`, `LODBias`, `MaximumLODLevel`, `ShadowResolution`, `ShadowDistance`, `ShadowCascades`, `VSyncCount`
+
+※ プロパティ名は SDK 3.10.5-beta.1 DLL 実測（PascalCase）。docs の `vSyncCount` 等 camelCase 表記は古い。
 
 ### 書換（一部のみ）
 
@@ -98,10 +100,20 @@ VRCQualitySettings.SetShadowDistance(low, med, high, mobile);
 // 各値 0.1f 〜 10000.0f
 // 実行時ユーザーに警告が出る
 
+VRCQualitySettings.SetShadowDistance(allQualityLevels);
+// 単一引数版：全品質レベルを一括設定
+
 VRCQualitySettings.ResetShadowDistance();
 ```
 
-Read-Write：`shadowCascade2Split`, `shadowCascade4Split`
+Read-Write：`ShadowCascade2Split`（float）, `ShadowCascade4Split`（Vector3）
+
+### 有効/無効の切替（SDK 3.10.5+）
+
+```csharp
+VRCQualitySettings.RealtimeReflectionProbes = true;  // bool・get/set。全プラットフォームで設定可
+VRCQualitySettings.ShadowmaskMode = ShadowmaskMode.DistanceShadowmask;  // UnityEngine.ShadowmaskMode。Distance Shadowmask は PC のみ。リアルタイム影とベイク影を混在できる
+```
 
 ### イベント
 

@@ -83,6 +83,11 @@ public int Score
 - 禁止構文や `FieldChangeCallback` バッキングフィールド直接代入は**コンパイルエラー**で検出される
 - エラーは Unity Console に表示される
 
+## 条件コンパイル — Assembly Version Defines（SDK 3.10.5+）
+
+- asmdef の **Version Defines** で定義したシンボルを UdonSharp スクリプトの `#if` で使える
+- 例：asmdef に Resource `com.vrchat.worlds`・Expression `3.10`・Define `SDK_310_OR_NEWER` を定義 → `#if SDK_310_OR_NEWER` で SDK バージョン依存コードをコンパイル時に切替できる
+
 ## 1 スクリプト = 1 UdonSharpProgramAsset
 
 - 各 `.cs` は**1 つの `UdonSharpProgramAsset`（`.asset`）にのみ接続**される
