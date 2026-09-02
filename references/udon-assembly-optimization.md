@@ -43,6 +43,16 @@ Udon Assembly はスタックベースのインタプリタ VM で実行され�
 - 暗黙 bool 変換と `==` オーバーロードは UnityEngine.Object 基底の定義なので、派生型すべてで疑似 null を判別できる(ただし `Destroy()` の反映はフレーム末)
 - `Utilities.IsValid` の速度は `== null` と統計的にほぼ同等(2〜3% 遅い傾向)。`object` 型スロットで選ぶ理由は速度でなく正しさ
 
+## SetProgramVariable / SendCustomEvent とヒープシンボル名
+
+文字列指定アクセス（`SetProgramVariable` / `GetProgramVariable` / `SendCustomEvent`）が見ているのは C# のアクセス修飾子ではなく、コンパイル後のヒープシンボル名とエントリポイント名。実測（SDK 3.10.5 系、EventReceiver 実験 + SymbolTable 確認、2026-09）：
+
+- **フィールドはアクセス修飾子に関係なく**（private / protected / public すべて）**C# 名そのままのヒープシンボルになり、SetProgramVariable で代入できる**。カプセル化は Udon ヒープ上には存在しない
+- **auto-property はプロパティ名のシンボルを持たない**。backing field が `_<プロパティ名>_k__BackingField` という専用シンボル名で存在し（C# の `<X>k__BackingField` の `<>` を `_` に置換した形）、これに直接代入できる。`SetProgramVariable("IntProperty", ...)` は効かない
+- アクセサはイベントとしてエクスポートされる：getter = `get_X`（戻り値シンボル `__0_get_X__ret`）、setter = `__0_set_X`（引数シンボル `__0_value__param`）。**引数なし public メソッドは C# 名そのまま、引数ありは `__0_<名前>` プレフィックス付き**でエクスポートされる
+- フィールドと対照的に、メソッドは **public のみ**エントリポイントにエクスポートされる。protected / private メソッドは内部 JUMP 先にしかならず、SendCustomEvent では呼べない（protected override の `Run()` 等もエクスポートされない）
+- 注意：いずれもコンパイラ生成名（非公開の実装詳細）への依存であり、リネームや U# 側の変更で**静かに壊れる**。外部契約として安全なのは public フィールドと引数なし public メソッド。バッキングフィールド名は `nameof` で取れないため、使う場合は const 化して理由をコメントに残す
+
 ## 検証手法
 
 - **公開 API の確認**:`VRC.Udon.Editor.UdonEditorManager.Instance.GetNodeDefinitions()` を名前で検索する
