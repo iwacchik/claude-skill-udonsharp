@@ -2,9 +2,14 @@
 
 UdonSharp の新規スクリプトは **`.cs` 単独では機能しない**。同フォルダ・同名の `UdonSharpProgramAsset`（`.asset`）が必要で、`sourceCsScript` 経由で `.cs` の MonoScript を参照する。
 
-UdonSharp 自体には programmatic に作成する公開 API は存在せず、唯一の正規実装は `UdonSharpBehaviourEditor.CreateUSharpScript()`（`Assets > Create > U# Script` メニュー、`private static`）。このドキュメントはその 5 行ロジックを **MCP for Unity の `execute_code`** 経由で実行する手順を提供する。
+UdonSharp 自体には programmatic に作成する公開 API は存在せず、唯一の正規実装は `UdonSharpBehaviourEditor.CreateUSharpScript()`（`Assets > Create > U# Script` メニュー）。SDK 3.10.5 では `internal static string CreateUSharpScript(string folderPath, bool createProgramAsset)` に分離され、作成した `.cs` のプロジェクト相対パスを返すようになったが、依然として public ではない。このドキュメントはその中核ロジックを **MCP for Unity の `execute_code`** 経由で実行する手順を提供する。
 
-公式実装の場所: `Packages/com.vrchat.worlds/Integrations/UdonSharp/Editor/Editors/UdonSharpBehaviourEditor.cs:80-127`
+公式実装の場所: `Packages/com.vrchat.worlds/Integrations/UdonSharp/Editor/Editors/UdonSharpBehaviourEditor.cs:80-185`（SDK 3.10.5 時点）
+
+## 配置先の制約（SDK 3.10.5）
+
+- 公式ダイアログは **`Assets/` または `Packages/` 配下**のみ許可する（3.10.5-beta.1 で `Assets/` 限定に制限 → beta.2 で `Packages/` を再許可）。プロジェクト外のパスは「Invalid path」ダイアログで明示的に拒否される
+- `Packages/` 配下では `AssetDatabase.CreateAsset` が直接使えないため、公式実装は `.asset` を一旦 `Assets/pkgUdon_<GUID>.asset` に作成してから `AssetDatabase.MoveAsset` で移動する。本ドキュメントのスニペットは `folder` が `Assets/` 配下である前提で書かれている（`Packages/` 配下に作る場合は同じ「Assets に作成 → MoveAsset」が必要）
 
 ## 何ができるか
 

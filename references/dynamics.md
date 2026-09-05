@@ -42,6 +42,8 @@ OnPhysBoneUnPosed(PhysBoneUnPosedInfo info)
 
 `pull` `spring` `momentum` `stiffness` `gravity` `gravityFalloff` `immobileType` `limitType` `maxAngle` `maxPitch` `maxYaw` `rotation` `radius` `allowCollision` `stretchMotion` `maxStretch` `maxSquish` `allowGrabbing` `allowPosing` `grabMovement` `snapToHand` `isAnimated` `resetWhenDisabled` および `pullCurve` `stretchCurve` `squishCurve` 等のカーブ。
 
+`resetWhenDisabled` が true のときは、コンポーネント無効化時に Animator パラメータと Udon から参照する状態（`IsGrabbed` / `IsPosed` / `Angle` / `Stretch` 等）もリセットされる（SDK 3.10.5 で確実にリセットされるよう修正）。
+
 ### メソッド
 
 | メソッド | 内容 |

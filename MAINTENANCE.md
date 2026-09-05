@@ -26,6 +26,7 @@ vrc-udonsharp スキルを VRChat / UdonSharp 公式ドキュメントの更新�
 - **VRChat SDK パッケージの CHANGELOG**（`Packages/com.vrchat.worlds/CHANGELOG.md`）
   - ※ 実際のパッケージには CHANGELOG.md が含まれないことがある（3.10.5-beta.1 で確認）。その場合は下記の GitHub releases を使う
 - **ベータ版 SDK のリリースノート**：https://github.com/vrchat/packages/releases — beta タグ（例：`3.10.5-beta.1`）の本文に https://vrc-beta-docs.netlify.app/releases/release-X-Y-Z へのリンクがある。creators.vrchat.com/releases には beta は載らない。ベータ版ドキュメント全体も vrc-beta-docs.netlify.app で参照できる（例：/worlds/components/vrc_pickup）
+- **正式版 SDK のリリースノート**：https://creators.vrchat.com/releases/release-X-Y-Z（例：/releases/release-3-10-5）。「Fixes & Changes in X.Y.Z-beta.N」セクションに beta 間の差分がまとまっているため、ベータ追随済みなら主にそこを見る。github.com/vrchat/packages/releases の本文は WebFetch で "Sorry, something went wrong" になり読めないことがある（タグ名・公開日・リンク先 URL は取れる）
 
 ### Step 2：更新対象ページの特定
 
@@ -110,11 +111,37 @@ fetched 日時を書いておくと、**古いものから再 fetch する運用
 - **要約ベースで取得される**ため、具体的な API シグネチャや数値を取りたい場合はプロンプトで明示指定
 - **SVG 図表はテキスト化されない**（Event Execution Order の公式図など）
 - **複数 DOM スラッグで同じページを指す**ケースあり（過去 network-id-utility で発生、最終的に手動 HTML 保存で解決）
+- **箇条書きの文末が途中で切れる**ことがある（リリースノートで顕著）。原文が必要なときは `curl -sL -A '<UA>' <URL> -o page.html` で保存し、`<article>` 内の `<h2>` / `<li>` / `<p>` を Python で抽出する（stdout は `PYTHONIOENCODING=utf-8` を指定。2026-09-05 Batch 19 で使用）
 
 ### API シグネチャは SDK DLL 実測で検証する（2026-08-24 Batch 18 で確立）
 
 docs の get/set 可否や casing は不正確なことがある（実例：VRCQualitySettings.RealtimeReflectionProbes / ShadowmaskMode を docs 要約は読み取り専用扱い → DLL 実測では get/set・`vSyncCount` 表記 → 実際は `VSyncCount`）。
 新 API を references に書く前に、`Packages/com.vrchat.worlds/Runtime/VRCSDK/Plugins/VRCSDK3.dll` や `com.vrchat.base/.../VRCSDKBase.dll` を PowerShell + System.Reflection.Metadata（PEReader）でメタデータ列挙して確認する。型が見つからない場合は基底クラス（例：VRCPickup → VRC_Pickup）も探す。
+
+列挙スクリプト（PowerShell 7、プロジェクトルートで実行。`$types` に調べたい型名を並べる）：
+
+```powershell
+Add-Type -AssemblyName System.Reflection.Metadata
+$path  = 'Packages/com.vrchat.worlds/Runtime/VRCSDK/Plugins/VRCSDK3.dll'   # or com.vrchat.base/Runtime/VRCSDK/Plugins/VRCSDKBase.dll
+$types = @('VRCQualitySettings')
+$fs = [IO.File]::OpenRead($path)
+$pe = New-Object System.Reflection.PortableExecutable.PEReader($fs)
+$md = [System.Reflection.Metadata.PEReaderExtensions]::GetMetadataReader($pe)
+foreach ($th in $md.TypeDefinitions) {
+  $t = $md.GetTypeDefinition($th); $n = $md.GetString($t.Name)
+  if ($n -notin $types) { continue }
+  "--- $($md.GetString($t.Namespace)).$n"
+  foreach ($fh in $t.GetFields()) { "  F " + $md.GetString($md.GetFieldDefinition($fh).Name) }
+  foreach ($ph in $t.GetProperties()) {
+    $p = $md.GetPropertyDefinition($ph); $a = $p.GetAccessors()
+    "  P " + $md.GetString($p.Name) + " [" + $(if (-not $a.Getter.IsNil) { 'get' }) + " " + $(if (-not $a.Setter.IsNil) { 'set' }) + "]"
+  }
+  foreach ($mh in $t.GetMethods()) { $m = $md.GetString($md.GetMethodDefinition($mh).Name); if ($m -notmatch '^(get_|set_|\.c?ctor)') { "  M $m" } }
+}
+$pe.Dispose(); $fs.Dispose()
+```
+
+2026-09-05（Batch 19）の実測：3.10.5 正式版の VRCQualitySettings / VRC_Pickup は beta.1 実測と同一（PascalCase、RealtimeReflectionProbes / ShadowmaskMode は get/set、SetShadowDistance 2 オーバーロード、OutlineRenderers フィールド）。
 
 ### 手動注入パターン
 

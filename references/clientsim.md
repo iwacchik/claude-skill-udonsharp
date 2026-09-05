@@ -28,6 +28,8 @@ ClientSim で全てを検証することはできない。特に**ネットワ�
 
 → `#if UNITY_EDITOR` で OnPostSerialization を擬似発火する設計が有効（`references/editor-scripting.md` 参照）。
 
+また、**Play → Edit 切替時に UdonBehaviour の `OnDisable()` 等の Unity イベントは実行されない**（SDK 3.10.5+、VRChat クライアントの挙動に合わせた変更）。Play 終了時の後始末を `OnDisable` 等で確認することはできない。
+
 ## 付属エディタウィンドウ
 
 - **PlayerObject Editor** — PlayerObject の状態を編集・確認

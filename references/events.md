@@ -12,7 +12,7 @@ UdonSharpBehaviour で `public override` できる / 発火するイベントま
 | `LateUpdate()` | 全 Update 完了後 |
 | `PostLateUpdate()` | LateUpdate 後、VRChat 独自。トラッキング・IK 完了後の値を使う処理向け |
 | `OnEnable()` | コンポーネント有効化時 |
-| `OnDisable()` | 無効化時 |
+| `OnDisable()` | 無効化時（ClientSim では Play → Edit 切替時に実行されない、SDK 3.10.5+） |
 | `OnDestroy()` | 破棄時 |
 
 ## プレイヤー系

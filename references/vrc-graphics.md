@@ -91,7 +91,7 @@ Unity Quality 設定への**読み取りアクセス**＋一部書き込み。
 
 `AntiAliasing`, `PixelLightCount`, `LODBias`, `MaximumLODLevel`, `ShadowResolution`, `ShadowDistance`, `ShadowCascades`, `VSyncCount`
 
-※ プロパティ名は SDK 3.10.5-beta.1 DLL 実測（PascalCase）。docs の `vSyncCount` 等 camelCase 表記は古い。
+※ プロパティ名は SDK 3.10.5 DLL 実測（PascalCase、正式版で再確認済み）。docs の `vSyncCount` 等 camelCase 表記は古い。docs は `RealtimeReflectionProbes` / `ShadowmaskMode` を読み取り専用に分類しているが、DLL 実測では get/set（下記）。
 
 ### 書換（一部のみ）
 

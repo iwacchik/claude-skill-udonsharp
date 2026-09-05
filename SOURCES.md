@@ -33,7 +33,7 @@ VRChat Worlds 公式ドキュメントを網羅して vrc-udonsharp スキルに
 - [x] https://creators.vrchat.com/worlds/components/vrc_cameradolly
 - [x] https://creators.vrchat.com/worlds/components/vrc_mirrorreflection
 - [x] https://creators.vrchat.com/worlds/components/vrc_objectsync
-- [x] https://creators.vrchat.com/worlds/components/vrc_pickup (fetched: 2026-08-24, 3.10.5-beta docs)
+- [x] https://creators.vrchat.com/worlds/components/vrc_pickup (fetched: 2026-09-05, 3.10.5 正式 docs で再確認)
 - [x] https://creators.vrchat.com/worlds/components/vrc_portalmarker
 - [x] https://creators.vrchat.com/worlds/components/vrc_scenedescriptor
 - [x] https://creators.vrchat.com/worlds/components/vrc_spatialaudiosource
@@ -132,7 +132,7 @@ VRChat Worlds 公式ドキュメントを網羅して vrc-udonsharp スキルに
 - [x] https://creators.vrchat.com/worlds/udon/vrc-graphics/
 - [x] https://creators.vrchat.com/worlds/udon/vrc-graphics/asyncgpureadback
 - [x] https://creators.vrchat.com/worlds/udon/vrc-graphics/vrc-camera-settings
-- [x] https://creators.vrchat.com/worlds/udon/vrc-graphics/vrc-quality-settings (fetched: 2026-08-24, 3.10.5-beta docs)
+- [x] https://creators.vrchat.com/worlds/udon/vrc-graphics/vrc-quality-settings (fetched: 2026-09-05, 3.10.5 正式 docs で再確認)
 - [x] https://creators.vrchat.com/worlds/udon/vrc-graphics/vrchat-shader-globals
 
 ## /worlds/udon/midi/ — MIDI（3）
@@ -237,6 +237,7 @@ VRChat Worlds 公式ドキュメントを網羅して vrc-udonsharp スキルに
 
 2026-04-21 に全域 coverage 達成。2026-07-18 に SDK 3.10.3 / 3.10.4 追随の再列挙・差分注入を実施（Batch 17）。
 2026-08-24 に SDK 3.10.5-beta.1 追随の差分注入を実施（Batch 18）。
+2026-09-05 に SDK 3.10.5 正式版追随の差分注入を実施（Batch 19）。
 
 ## 完了ログ
 - 2026-04-21 Batch 1：UdonSharp 言語仕様 / セットアップ / パフォーマンス Tips / Editor Scripting / Udon 概要 / Event Execution Order → v2 に `SKILL.md`、`rules/language.md`、`rules/basics.md`、`references/performance.md`、`references/editor-scripting.md`、`references/event-execution-order.md` 作成
@@ -257,3 +258,4 @@ VRChat Worlds 公式ドキュメントを網羅して vrc-udonsharp スキルに
 - 2026-04-21 Batch 16（追補）：udonsharp.docs 再列挙で取りこぼし 2 ページ発見 — `/vrchat-api`（UdonSharp から呼べる VRChat API 網羅）と `/events`（UdonSharp override 可能イベント正規シグネチャ）→ `references/vrchat-api.md` 新規作成、`references/events.md` に PostLateUpdate / Video / MIDI / OnControllerColliderHitPlayer 追記
 - 2026-07-18 Batch 17：SDK 3.10.3 / 3.10.4 追随。sitemap.xml 再列挙で未登録 53 URL 検出。VRCTween 4 ページ → `references/vrctween.md` 新規、common-components 6 ページ → `references/dynamics.md` 新規（PhysBones / Contacts / Constraints の Udon API）。DataList / DataDictionary 容量 API・isVRCPlus・VRCDroneApi 詳細・TMP サブページ 3・whitelist（Dynamics 系追加）を既存 references に反映。UdonSharp 移設セクション 6 ページを確認し Class Exposure Tree を `udonsharp-meta.md` に追記、SKILL.md に新規 references 2 件を追加。ClientSim systems（26）・Graph サブページ（5）・インデックスページは対象外登録。
 - 2026-08-24 Batch 18：SDK 3.10.5-beta.1 追随（リリースノート：github.com/vrchat/packages tag 3.10.5-beta.1 → vrc-beta-docs.netlify.app/releases/release-3-10-5）。VRCQualitySettings に RealtimeReflectionProbes / ShadowmaskMode（get/set・DLL 実測）と SetShadowDistance 単一引数版を追加、プロパティ名を PascalCase に修正 → `vrc-graphics.md`。VRC_Pickup の OutlineRenderers → `components.md`。UdonSharp の Assembly Version Defines 対応 → `rules/language.md`。VRCJson 堅牢性改善・DataToken int→long 変換修正の注記 → `data-containers.md`。VRCRaycast の Root Transform は Avatars 向け、ClientSim / PhysBones 系はバグ修正のみのため対象外。
+- 2026-09-05 Batch 19：SDK 3.10.5 正式版追随（リリースノート：creators.vrchat.com/releases/release-3-10-5、2026-09-04 公開）。beta.1 反映済み項目（VRCQualitySettings / OutlineRenderers / Assembly Version Defines / VRCJson / DataToken）は正式版 DLL（VRCSDK3.dll / VRCSDKBase.dll）と正式 docs で再確認し、beta.1 実測と同一であることを確認 → `vrc-graphics.md` の実測注記を正式版表記に更新。beta.2 追加分を反映：VRCJson のネスト括弧修正 → `data-containers.md`、U# スクリプト作成先が Assets / Packages 両対応（beta.1 では Assets 限定） → `create-script.md`（正規実装の行番号・シグネチャも更新）、PhysBone の Reset When Disabled で Udon 側状態もリセット → `dynamics.md`。正式版ノートで判明した ClientSim の挙動変更（Play → Edit 切替時に OnDisable 等を実行しない） → `clientsim.md` / `events.md`。SDK 同梱 UdonSharp の 3.10.5 変更点を `udonsharp-meta.md` の News に追記。AudioLink for Toon Standard（シェーダー）・VRCRaycast Root Transform（Avatars）・PipelineManager 重複検出等のビルド系・ClientSim の null 参照修正は対象外。

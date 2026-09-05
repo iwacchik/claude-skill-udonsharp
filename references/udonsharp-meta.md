@@ -138,3 +138,11 @@ FAQ には「Custom enum / Generic / Inheritance / Interface / Overload / Proper
 | 1.1.2（2022/10） | 同期型チェック機能追加 |
 
 詳細は公式ブログ参照。
+
+### SDK 同梱版の変更（Worlds SDK 同梱後）
+
+UdonSharp は Worlds SDK に同梱されており、変更点は SDK のリリースノート（https://creators.vrchat.com/releases/）に含まれる。
+
+| SDK | 主な変更 |
+|-----|---------|
+| **3.10.5**（2026/09） | asmdef の **Assembly Version Defines** を `#if` で使用可能（`rules/language.md`）。U# スクリプト作成ダイアログの配置先を `Assets/` / `Packages/` 配下に限定（プロジェクト外は明示エラー、`references/create-script.md`）。U# 更新中はアセットインポートを一時停止し、複数の再インポートを 1 回に集約 |
